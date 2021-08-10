@@ -144,10 +144,11 @@ public class LudoActivity extends AppCompatActivity {
             pin_Path = new PathPostion[52];
             moveRed = true;
 
-            rectRed = new Rect(50,50,200,200);
-            rectBlue = new Rect(ScreenWidth - 200, ScreenHeight - 200, ScreenWidth - 50, ScreenHeight - 50);
-            rectGreen = new Rect(ScreenWidth - 200, 50, ScreenWidth - 50, 200);
-            rectYellow = new Rect(50, ScreenHeight - 200,200,ScreenHeight - 50);
+            rectRed = new Rect(250,50,700,200);
+            Log.d("check" , "Screen height : "+ ScreenHeight + "Screen width : "+ ScreenWidth);
+            rectBlue = new Rect(ScreenWidth - 700, ScreenHeight - 200, ScreenWidth - 350, ScreenHeight - 50);
+            rectGreen = new Rect(ScreenWidth - 700, 50, ScreenWidth - 350, 200);
+            rectYellow = new Rect(250, ScreenHeight - 200,700,ScreenHeight - 50);
 
             totalPlayers = choices.length;
 
