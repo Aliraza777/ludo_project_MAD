@@ -19,6 +19,7 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -32,7 +33,7 @@ import java.util.Random;
 public class LudoActivity extends AppCompatActivity {
     private LudoGameView ludoGameView;
 
-    public static PathPostion[] romPath;
+    public static PathPostion[] pin_Path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,7 +141,7 @@ public class LudoActivity extends AppCompatActivity {
             bmpStar = BitmapFactory.decodeResource(context.getResources(),R.drawable.ic_star_icon);
             bmpStarWhite = BitmapFactory.decodeResource(context.getResources(),R.drawable.ic_star_icon_white);
             bmpDice = Bitmap.createBitmap(100,100, Bitmap.Config.ARGB_8888);
-            romPath = new PathPostion[52];
+            pin_Path = new PathPostion[52];
             moveRed = true;
 
             rectRed = new Rect(50,50,200,200);
@@ -214,6 +215,8 @@ public class LudoActivity extends AppCompatActivity {
 
             paint.setColor(Color.BLACK);
             map.drawRect(left - 2 , 0, blockWidthHight + left - 2, blockWidthHight, paint);
+            Log.d("ludoLeft" , "height = "+ScreenWidth + "width = "+ ScreenWidth);
+
             paint.setColor(Color.RED);
             map.drawRect(left, 2, blockWidthHight - 2 + left, blockWidthHight - 2, paint);
 
@@ -545,20 +548,20 @@ public class LudoActivity extends AppCompatActivity {
                     switch (i) {
                         case 0:
                             if (j == 1) {
-                                romPath[1] = new PathPostion(pathX, pathY, true);
+                                pin_Path[1] = new PathPostion(pathX, pathY, true);
                             } else {
-                                romPath[j] = new PathPostion(pathX, pathY, false);
+                                pin_Path[j] = new PathPostion(pathX, pathY, false);
                             }
                             break;
                         case 1:
                             if (j == 0)
-                                romPath[51] = new PathPostion(pathX, pathY, false);
+                                pin_Path[51] = new PathPostion(pathX, pathY, false);
                             break;
                         case 2:
                             if (j == 2)
-                                romPath[50 - j] = new PathPostion(pathX, pathY, true);
+                                pin_Path[50 - j] = new PathPostion(pathX, pathY, true);
                             else
-                                romPath[50 - j] = new PathPostion(pathX, pathY, false);
+                                pin_Path[50 - j] = new PathPostion(pathX, pathY, false);
                             break;
                     }
 
@@ -603,19 +606,19 @@ public class LudoActivity extends AppCompatActivity {
                     switch (i) {
                         case 0:
                             if (j == 2)
-                                romPath[11 - j] = new PathPostion(pathX, pathY, true);
+                                pin_Path[11 - j] = new PathPostion(pathX, pathY, true);
                             else
-                                romPath[11 - j] = new PathPostion(pathX, pathY, false);
+                                pin_Path[11 - j] = new PathPostion(pathX, pathY, false);
                             break;
                         case 1:
                             if (j == 0)
-                                romPath[12] = new PathPostion(pathX, pathY, false);
+                                pin_Path[12] = new PathPostion(pathX, pathY, false);
                             break;
                         case 2:
                             if (j == 1)
-                                romPath[13 + j] = new PathPostion(pathX, pathY, true);
+                                pin_Path[13 + j] = new PathPostion(pathX, pathY, true);
                             else
-                                romPath[13 + j] = new PathPostion(pathX, pathY, false);
+                                pin_Path[13 + j] = new PathPostion(pathX, pathY, false);
                             break;
                     }
 
@@ -658,19 +661,19 @@ public class LudoActivity extends AppCompatActivity {
                     switch (i) {
                         case 0:
                             if (j == 2)
-                                romPath[24 - j] = new PathPostion(pathX, pathY, true);
+                                pin_Path[24 - j] = new PathPostion(pathX, pathY, true);
                             else
-                                romPath[24 - j] = new PathPostion(pathX, pathY, false);
+                                pin_Path[24 - j] = new PathPostion(pathX, pathY, false);
                             break;
                         case 1:
                             if (j == 0)
-                                romPath[25] = new PathPostion(pathX, pathY, false);
+                                pin_Path[25] = new PathPostion(pathX, pathY, false);
                             break;
                         case 2:
                             if (j == 1)
-                                romPath[26 + j] = new PathPostion(pathX, pathY, true);
+                                pin_Path[26 + j] = new PathPostion(pathX, pathY, true);
                             else
-                                romPath[26 + j] = new PathPostion(pathX, pathY, false);
+                                pin_Path[26 + j] = new PathPostion(pathX, pathY, false);
                             break;
                     }
                     pathX -= siglePathWidth;
@@ -715,36 +718,36 @@ public class LudoActivity extends AppCompatActivity {
                     switch (i) {
                         case 0:
                             if (j == 4)
-                                romPath[44 - j] = new PathPostion(pathX, pathY, true);
+                                pin_Path[44 - j] = new PathPostion(pathX, pathY, true);
                             else
-                                romPath[44 - j] = new PathPostion(pathX, pathY, false);
+                                pin_Path[44 - j] = new PathPostion(pathX, pathY, false);
                             break;
                         case 1:
                             if (j == 5)
-                                romPath[38] = new PathPostion(pathX, pathY, false);
+                                pin_Path[38] = new PathPostion(pathX, pathY, false);
                             break;
                         case 2:
                             if (j == 3)
-                                romPath[32 + j] = new PathPostion(pathX, pathY, true);
+                                pin_Path[32 + j] = new PathPostion(pathX, pathY, true);
                             else
-                                romPath[32 + j] = new PathPostion(pathX, pathY, false);
+                                pin_Path[32 + j] = new PathPostion(pathX, pathY, false);
                     }
                     pathY += siglePathWidth;
                 }
             }
-
-            for (int i = 0; i < greenPath.length; i++)
-            {
-                Log.d("LudoActivity","Green path " + i + " : " + greenPath[i].toString());
-            }
-
-            for (int i = 0; i < yellowPath.length; i++)
-            {
-                if(yellowPath[i] == null)
-                    Log.d("LudoActivity","Yellow path at " + i + " is null");
-                else
-                    Log.d("LudoActivity","Yellow path " + i + " : " + yellowPath[i].toString());
-            }
+//
+//            for (int i = 0; i < greenPath.length; i++)
+//            {
+//                Log.d("LudoActivity","Green path " + i + " : " + greenPath[i].toString());
+//            }
+//
+//            for (int i = 0; i < yellowPath.length; i++)
+//            {
+//                if(yellowPath[i] == null)
+//                    Log.d("LudoActivity","Yellow path at " + i + " is null");
+//                else
+//                    Log.d("LudoActivity","Yellow path " + i + " : " + yellowPath[i].toString());
+//            }
 
             if(initRed) {
                 if (playerRed == null) {
@@ -785,9 +788,7 @@ public class LudoActivity extends AppCompatActivity {
             paint.setColor(Color.BLACK);
             map.drawRect(left + blockWidthHight, blockWidthHight,
                     left + blockWidthHight + pathWidth, blockWidthHight + pathWidth, paint);
-//                        paint.setColor(Color.RED);
-//                        map.drawRect(50 + blockWidthHight+2,blockWidthHight+2,
-//                        50 + blockWidthHight + pathWidth-2,blockWidthHight + pathWidth-2,paint);
+
 
             paint.setColor(Color.RED);
             Path path = new Path();
@@ -888,24 +889,24 @@ public class LudoActivity extends AppCompatActivity {
         void Draw(){
             if(holder.getSurface().isValid()) {
                 canvas = holder.lockCanvas();
-                canvas.drawColor(Color.WHITE);
+                canvas.drawColor(getResources().getColor(R.color.bg_color));
                 canvas.drawBitmap(bmpMap,0,0,null);
 
                 if (t == Turn.RED)
-                    canvas.drawBitmap(bmpDice, 50, 50, null);
+                    canvas.drawBitmap(bmpDice, 350, 50, null);
                 else if (t == Turn.GREEN)
-                    canvas.drawBitmap(bmpDice, ScreenWidth - 200, 50, null);
+                    canvas.drawBitmap(bmpDice, ScreenWidth - 450, 50, null);
                 else if (t == Turn.BLUE)
-                    canvas.drawBitmap(bmpDice, ScreenWidth - 200, ScreenHeight - 200, null);
+                    canvas.drawBitmap(bmpDice, ScreenWidth - 450, ScreenHeight - 200, null);
                 else
-                    canvas.drawBitmap(bmpDice, 50, ScreenHeight - 200, null);
+                    canvas.drawBitmap(bmpDice, 350, ScreenHeight - 200, null);
 
                 DrawPlayerPiece();
-                //canvas.drawBitmap(bmpRedPiece,ScreenWidth - 60,50,null);
                 DrawArrows();
 
                 if(gameFinished)
                 {
+                    paint.setColor(Color.BLACK);
                     paint.setTextSize(150);
                     paint.setTextAlign(Paint.Align.CENTER);
                     canvas.drawText(winText,canvas.getWidth() / 2,canvas.getHeight() / 2,paint);
@@ -917,7 +918,7 @@ public class LudoActivity extends AppCompatActivity {
         private void MoveToHome() {
 
             if(initRed) {
-                Piece[] pieces = playerRed.getRedPiecePositions();
+                Piece[] pieces = playerRed.getPiecePositions();
                 for (int i = 0; i < 4; i++) {
                     Piece p = pieces[i];
                     if (p.getHome()) {
@@ -931,7 +932,7 @@ public class LudoActivity extends AppCompatActivity {
             }
 
             if(initBlue) {
-                Piece[] pieces = playerBlue.getRedPiecePositions();
+                Piece[] pieces = playerBlue.getPiecePositions();
                 for (int i = 0; i < 4; i++) {
                     Piece p = pieces[i];
                     if (p.getHome()) {
@@ -945,7 +946,7 @@ public class LudoActivity extends AppCompatActivity {
             }
 
             if(initGreen) {
-                Piece[] pieces = playerGreen.getRedPiecePositions();
+                Piece[] pieces = playerGreen.getPiecePositions();
                 for (int i = 0; i < 4; i++) {
                     Piece p = pieces[i];
                     if (p.getHome()) {
@@ -959,7 +960,7 @@ public class LudoActivity extends AppCompatActivity {
             }
 
             if(initYellow) {
-                Piece[] pieces = playerYellow.getRedPiecePositions();
+                Piece[] pieces = playerYellow.getPiecePositions();
                 for (int i = 0; i < 4; i++) {
                     Piece p = pieces[i];
                     if (p.getHome()) {
@@ -977,9 +978,10 @@ public class LudoActivity extends AppCompatActivity {
 
             if(t == Turn.RED)
             {
-                Piece[] pieces = playerRed.getRedPiecePositions();
+                Piece[] pieces = playerRed.getPiecePositions();
                 for (int i = 0; i < pieces.length; i++)
                 {
+                    Log.d("Pieces", "MovePiece: " + pieces.length);
                     Piece p = pieces[i];
                     if(p.getMove())
                     {
@@ -992,7 +994,7 @@ public class LudoActivity extends AppCompatActivity {
                             if(initGreen) {
                                 for (int j = 0; j < 4; j++)
                                 {
-                                    Piece p1 = playerGreen.getRedPiecePositions()[j];
+                                    Piece p1 = playerGreen.getPiecePositions()[j];
                                     if(p.getCollision().intersect(p1.getCollision()))
                                     {
                                         if(!p.getIsStar(p.getTarget()))
@@ -1009,7 +1011,7 @@ public class LudoActivity extends AppCompatActivity {
                             {
                                 for (int j = 0; j < 4; j++)
                                 {
-                                    Piece p1 = playerBlue.getRedPiecePositions()[j];
+                                    Piece p1 = playerBlue.getPiecePositions()[j];
                                     if(p.getCollision().intersect(p1.getCollision()))
                                     {
                                         if(!p.getIsStar(p.getTarget()))
@@ -1027,7 +1029,7 @@ public class LudoActivity extends AppCompatActivity {
                             {
                                 for (int j = 0; j < 4; j++)
                                 {
-                                    Piece p1 = playerYellow.getRedPiecePositions()[j];
+                                    Piece p1 = playerYellow.getPiecePositions()[j];
                                     if(p.getCollision().intersect(p1.getCollision()))
                                     {
                                         if(!p.getIsStar(p.getTarget()))
@@ -1043,7 +1045,6 @@ public class LudoActivity extends AppCompatActivity {
                             if(clear) {
                                 if(p.getComplete())
                                 {
-                                    Log.d("LudoActivity","Piece Complete");
                                     int com = 0;
                                     for (int j = 0; j < 4; j++) {
                                         if(pieces[j].getComplete())
@@ -1057,7 +1058,6 @@ public class LudoActivity extends AppCompatActivity {
                                     else {
                                         SetNextTurn();
                                     }
-
                                 }
                                 else
                                     SetNextTurn();
@@ -1073,7 +1073,7 @@ public class LudoActivity extends AppCompatActivity {
             }
             else if(t == Turn.GREEN)
             {
-                Piece[] pieces = playerGreen.getRedPiecePositions();
+                Piece[] pieces = playerGreen.getPiecePositions();
                 for (int i = 0; i < pieces.length; i++)
                 {
                     Piece p = pieces[i];
@@ -1088,7 +1088,7 @@ public class LudoActivity extends AppCompatActivity {
                             if(initRed) {
                                 for (int j = 0; j < 4; j++)
                                 {
-                                    Piece p1 = playerRed.getRedPiecePositions()[j];
+                                    Piece p1 = playerRed.getPiecePositions()[j];
                                     if(p.getCollision().intersect(p1.getCollision()))
                                     {
                                         if(!p.getIsStar(p.getTarget()))
@@ -1105,7 +1105,7 @@ public class LudoActivity extends AppCompatActivity {
                             {
                                 for (int j = 0; j < 4; j++)
                                 {
-                                    Piece p1 = playerBlue.getRedPiecePositions()[j];
+                                    Piece p1 = playerBlue.getPiecePositions()[j];
                                     if(p.getCollision().intersect(p1.getCollision()))
                                     {
                                         if(!p.getIsStar(p.getTarget()))
@@ -1123,7 +1123,7 @@ public class LudoActivity extends AppCompatActivity {
                             {
                                 for (int j = 0; j < 4; j++)
                                 {
-                                    Piece p1 = playerYellow.getRedPiecePositions()[j];
+                                    Piece p1 = playerYellow.getPiecePositions()[j];
                                     if(p.getCollision().intersect(p1.getCollision()))
                                     {
                                         if(!p.getIsStar(p.getTarget()))
@@ -1140,7 +1140,6 @@ public class LudoActivity extends AppCompatActivity {
                             if(clear) {
                                 if(p.getComplete())
                                 {
-                                    Log.d("LudoActivity","Piece Complete");
                                     int com = 0;
                                     for (int j = 0; j < 4; j++) {
                                         if(pieces[j].getComplete())
@@ -1170,7 +1169,7 @@ public class LudoActivity extends AppCompatActivity {
             }
             else if(t == Turn.BLUE)
             {
-                Piece[] pieces = playerBlue.getRedPiecePositions();
+                Piece[] pieces = playerBlue.getPiecePositions();
                 for (int i = 0; i < pieces.length; i++)
                 {
                     Piece p = pieces[i];
@@ -1185,7 +1184,7 @@ public class LudoActivity extends AppCompatActivity {
                             if(initRed) {
                                 for (int j = 0; j < 4; j++)
                                 {
-                                    Piece p1 = playerRed.getRedPiecePositions()[j];
+                                    Piece p1 = playerRed.getPiecePositions()[j];
                                     if(p.getCollision().intersect(p1.getCollision()))
                                     {
                                         if(!p.getIsStar(p.getTarget()))
@@ -1202,7 +1201,7 @@ public class LudoActivity extends AppCompatActivity {
                             {
                                 for (int j = 0; j < 4; j++)
                                 {
-                                    Piece p1 = playerGreen.getRedPiecePositions()[j];
+                                    Piece p1 = playerGreen.getPiecePositions()[j];
                                     if(p.getCollision().intersect(p1.getCollision()))
                                     {
                                         if(!p.getIsStar(p.getTarget()))
@@ -1220,7 +1219,7 @@ public class LudoActivity extends AppCompatActivity {
                             {
                                 for (int j = 0; j < 4; j++)
                                 {
-                                    Piece p1 = playerYellow.getRedPiecePositions()[j];
+                                    Piece p1 = playerYellow.getPiecePositions()[j];
                                     if(p.getCollision().intersect(p1.getCollision()))
                                     {
                                         if(!p.getIsStar(p.getTarget()))
@@ -1237,7 +1236,6 @@ public class LudoActivity extends AppCompatActivity {
                             if(clear) {
                                 if(p.getComplete())
                                 {
-                                    Log.d("LudoActivity","Piece Complete");
                                     int com = 0;
                                     for (int j = 0; j < 4; j++) {
                                         if(pieces[j].getComplete())
@@ -1267,7 +1265,7 @@ public class LudoActivity extends AppCompatActivity {
             }
             else if(t == Turn.YELLOW)
             {
-                Piece[] pieces = playerYellow.getRedPiecePositions();
+                Piece[] pieces = playerYellow.getPiecePositions();
                 for (int i = 0; i < pieces.length; i++)
                 {
                     Piece p = pieces[i];
@@ -1283,7 +1281,7 @@ public class LudoActivity extends AppCompatActivity {
                             if(initRed) {
                                 for (int j = 0; j < 4; j++)
                                 {
-                                    Piece p1 = playerRed.getRedPiecePositions()[j];
+                                    Piece p1 = playerRed.getPiecePositions()[j];
                                     if(p.getCollision().intersect(p1.getCollision()))
                                     {
                                         if(!p.getIsStar(p.getTarget()))
@@ -1300,7 +1298,7 @@ public class LudoActivity extends AppCompatActivity {
                             {
                                 for (int j = 0; j < 4; j++)
                                 {
-                                    Piece p1 = playerBlue.getRedPiecePositions()[j];
+                                    Piece p1 = playerBlue.getPiecePositions()[j];
                                     if(p.getCollision().intersect(p1.getCollision()))
                                     {
                                         if(!p.getIsStar(p.getTarget()))
@@ -1318,7 +1316,7 @@ public class LudoActivity extends AppCompatActivity {
                             {
                                 for (int j = 0; j < 4; j++)
                                 {
-                                    Piece p1 = playerGreen.getRedPiecePositions()[j];
+                                    Piece p1 = playerGreen.getPiecePositions()[j];
                                     if(p.getCollision().intersect(p1.getCollision()))
                                     {
                                         if(!p.getIsStar(p.getTarget()))
@@ -1488,8 +1486,8 @@ public class LudoActivity extends AppCompatActivity {
         }
 
         private void SuffleDice() {
-            Random r = new Random();
-            int next = r.nextInt(6) + 1;
+            Random random = new Random();
+            int next = random.nextInt(6) + 1;
             if(suffleDice <= 0) {
                 suffleDice = 10;
                 isShuffling = false;
@@ -1506,7 +1504,7 @@ public class LudoActivity extends AppCompatActivity {
         private void checkCanMove() {
             if(t == Turn.RED)
             {
-                Piece[] pieces = playerRed.getRedPiecePositions();
+                Piece[] pieces = playerRed.getPiecePositions();
                 int moveCount = 0;
                 int id = 0;
                 for (int i= 0; i < pieces.length; i++)
@@ -1538,7 +1536,7 @@ public class LudoActivity extends AppCompatActivity {
             }
             else if(t == Turn.BLUE)
             {
-                Piece[] pieces = playerBlue.getRedPiecePositions();
+                Piece[] pieces = playerBlue.getPiecePositions();
                 int moveCount = 0;
                 int id = 0;
                 for (int i= 0; i < pieces.length; i++)
@@ -1570,7 +1568,7 @@ public class LudoActivity extends AppCompatActivity {
             }
             else if(t == Turn.GREEN)
             {
-                Piece[] pieces = playerGreen.getRedPiecePositions();
+                Piece[] pieces = playerGreen.getPiecePositions();
                 int moveCount = 0;
                 int id = 0;
                 for (int i= 0; i < pieces.length; i++)
@@ -1602,7 +1600,7 @@ public class LudoActivity extends AppCompatActivity {
             }
             else if(t == Turn.YELLOW)
             {
-                Piece[] pieces = playerYellow.getRedPiecePositions();
+                Piece[] pieces = playerYellow.getPiecePositions();
                 int moveCount = 0;
                 int id = 0;
                 for (int i= 0; i < pieces.length; i++)
@@ -1695,15 +1693,13 @@ public class LudoActivity extends AppCompatActivity {
 
             if(playerRed != null)
             {
-                Piece[] pieces = playerRed.getRedPiecePositions();
+                Piece[] pieces = playerRed.getPiecePositions();
                 for (int i = 0; i < pieces.length; i++)
                 {
                     Piece p = pieces[i];
-                    //canvas.drawBitmap(playerRed.getBmpPiece(),p.getX() - (playerRed.getPieceSize() / 2), p.getY() - (playerRed.getPieceSize()),null);
                     paint.setColor(Color.parseColor(redPieceColor));
                     canvas.drawBitmap(bmpRedPiece,p.getX()-bmpRedPiece.getWidth()/2,p.getY()-bmpRedPiece.getHeight(),null);
-                    //canvas.drawCircle(p.getX(),p.getY(),(CircleSize - 8) / 2,paint);
-                    //canvas.drawRect(p.getCollision(),paint);
+
                 }
 
                 if(t == Turn.RED)
@@ -1719,7 +1715,7 @@ public class LudoActivity extends AppCompatActivity {
 
             if(playerYellow != null)
             {
-                Piece[] pieces = playerYellow.getRedPiecePositions();
+                Piece[] pieces = playerYellow.getPiecePositions();
                 for (int i = 0; i < pieces.length; i++)
                 {
                     Piece p = pieces[i];
@@ -1741,7 +1737,7 @@ public class LudoActivity extends AppCompatActivity {
 
             if(playerBlue != null)
             {
-                Piece[] pieces = playerBlue.getRedPiecePositions();
+                Piece[] pieces = playerBlue.getPiecePositions();
                 for (int i = 0; i < pieces.length; i++)
                 {
                     Piece p = pieces[i];
@@ -1762,7 +1758,7 @@ public class LudoActivity extends AppCompatActivity {
 
             if(playerGreen != null)
             {
-                Piece[] pieces = playerGreen.getRedPiecePositions();
+                Piece[] pieces = playerGreen.getPiecePositions();
                 for (int i = 0; i < green.length; i++)
                 {
                     Piece p = pieces[i];
@@ -1794,16 +1790,11 @@ public class LudoActivity extends AppCompatActivity {
             if(t == Turn.RED)
             {
                 if(placeToMove == 6) {
-                    Piece[] pieces = playerRed.getRedPiecePositions();
+                    Piece[] pieces = playerRed.getPiecePositions();
                     for (int i = 0; i < pieces.length; i++) {
                         if (pieces[i].getIsKilled()) {
                             playerRed.getArrows(i).setY();
-
                             paint.setColor(Color.parseColor("#be5c46"));
-//                    paint.setShader(new LinearGradient(0f,0f,
-//                            0,
-//                            getHeight(),
-//                            Color.RED,Color.WHITE, Shader.TileMode.MIRROR));
                             canvas.drawPath( playerRed.getArrows(i).getPath(), paint);
                         }
                     }
@@ -1813,7 +1804,7 @@ public class LudoActivity extends AppCompatActivity {
             if(t == Turn.GREEN)
             {
                 if(placeToMove == 6) {
-                    Piece[] pieces = playerGreen.getRedPiecePositions();
+                    Piece[] pieces = playerGreen.getPiecePositions();
                     for (int i = 0; i < pieces.length; i++) {
                         if (pieces[i].getIsKilled()) {
 
@@ -1833,15 +1824,12 @@ public class LudoActivity extends AppCompatActivity {
             if(t == Turn.BLUE)
             {
                 if(placeToMove == 6) {
-                    Piece[] pieces = playerBlue.getRedPiecePositions();
+                    Piece[] pieces = playerBlue.getPiecePositions();
                     for (int i = 0; i < pieces.length; i++) {
                         if (pieces[i].getIsKilled()) {
                             playerBlue.getArrows(i).setY();
                             paint.setColor(Color.parseColor("#051850"));
-//                    paint.setShader(new LinearGradient(0f,0f,
-//                            0,
-//                            getHeight(),
-//                            Color.BLUE,Color.WHITE, Shader.TileMode.MIRROR));
+
                             canvas.drawPath( playerBlue.getArrows(i).getPath(), paint);
                         }
                     }
@@ -1851,16 +1839,12 @@ public class LudoActivity extends AppCompatActivity {
             if(t == Turn.YELLOW)
             {
                 if(placeToMove == 6) {
-                    Piece[] pieces = playerYellow.getRedPiecePositions();
+                    Piece[] pieces = playerYellow.getPiecePositions();
                     for (int i = 0; i < pieces.length; i++) {
                         if (pieces[i].getIsKilled()) {
                             playerYellow.getArrows(i).setY();
 
                             paint.setColor(Color.parseColor("#9b942c"));
-//                    paint.setShader(new LinearGradient(0f,0f,
-//                            0,
-//                            getHeight(),
-//                            Color.YELLOW,Color.WHITE, Shader.TileMode.MIRROR));
                             canvas.drawPath(playerYellow.getArrows(i).getPath(), paint);
                         }
                     }
@@ -1886,7 +1870,7 @@ public class LudoActivity extends AppCompatActivity {
 
         void control(){
             try {
-                gameThread.sleep(17);
+                gameThread.sleep(10);
             }catch (InterruptedException e)
             {
                 e.printStackTrace();
@@ -1923,7 +1907,7 @@ public class LudoActivity extends AppCompatActivity {
                         } else if (toMove) {
                             if (t == Turn.RED) {
                                 if (!isMoving) {
-                                    Piece[] pieces = playerRed.getRedPiecePositions();
+                                    Piece[] pieces = playerRed.getPiecePositions();
 
                                     for (int i = 0; i < pieces.length; i++) {
                                         {
@@ -1946,7 +1930,7 @@ public class LudoActivity extends AppCompatActivity {
                                 }
                             } else if (t == Turn.YELLOW) {
                                 if (!isMoving) {
-                                    Piece[] pieces = playerYellow.getRedPiecePositions();
+                                    Piece[] pieces = playerYellow.getPiecePositions();
 
                                     for (int i = 0; i < pieces.length; i++) {
                                         {
@@ -1969,7 +1953,7 @@ public class LudoActivity extends AppCompatActivity {
                                 }
                             } else if (t == Turn.GREEN) {
                                 if (!isMoving) {
-                                    Piece[] pieces = playerGreen.getRedPiecePositions();
+                                    Piece[] pieces = playerGreen.getPiecePositions();
 
                                     for (int i = 0; i < pieces.length; i++) {
                                         {
@@ -1992,7 +1976,7 @@ public class LudoActivity extends AppCompatActivity {
                                 }
                             } else if (t == Turn.BLUE) {
                                 if (!isMoving) {
-                                    Piece[] pieces = playerBlue.getRedPiecePositions();
+                                    Piece[] pieces = playerBlue.getPiecePositions();
 
                                     for (int i = 0; i < pieces.length; i++) {
                                         {

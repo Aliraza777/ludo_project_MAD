@@ -37,7 +37,7 @@ public class Player {
 
         this.pieceSize = pieceSize;
         PlayerColor = col;
-        PathPostion[] romPath = new PathPostion[57];
+        PathPostion[] pin_Path = new PathPostion[57];
         if(path == null)
             Log.d("LudoActivity","path is empty");
         else {
@@ -47,19 +47,17 @@ public class Player {
 
         for (int i = 0; i < 51; i++)
         {
-            Log.d("LudoActivity", " si : " + si + ", i : "+ i + " Total : " + (si + i));
             if(si + i > 51) {
-                Log.d("LudoActivity", " si : " + si + ", i : "+ i + " Total - 51 : " + (si + i - 52));
-                romPath[i] = LudoActivity.romPath[si + i - 52];
+                pin_Path[i] = LudoActivity.pin_Path[si + i - 52];
             }
             else {
-                romPath[i] = LudoActivity.romPath[si + i];
+                pin_Path[i] = LudoActivity.pin_Path[si + i];
             }
         }
 
         int j = 0;
         for (int i = 51; i < 57; i++) {
-            romPath[i] = new PathPostion(path[j].getX(),path[j].getY(),false);
+            pin_Path[i] = new PathPostion(path[j].getX(),path[j].getY(),false);
             j++;
         }
 
@@ -67,7 +65,7 @@ public class Player {
 
         for (int i = 0; i < piecePos.length; i++)
         {
-            pieces[i] = new Piece(piecePos[i].getX(),piecePos[i].getY(), pieceSize, romPath);
+            pieces[i] = new Piece(piecePos[i].getX(),piecePos[i].getY(), pieceSize, pin_Path);
         }
 
         arrows = new Arrows[4];
@@ -150,7 +148,7 @@ public class Player {
     public boolean getWin(){return isWin;}
     public void setWin(boolean value){isWin = value;}
 
-    public Piece[] getRedPiecePositions()
+    public Piece[] getPiecePositions()
     {
         return pieces;
     }
