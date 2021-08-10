@@ -46,20 +46,53 @@ public class LudoActivity extends AppCompatActivity {
         //Getting the screen resolution into point object
         Point size = new Point();
         display.getSize(size);
-        PieceChoice choice = new PieceChoice(2);
-        PieceChoice choice1 = new PieceChoice(4);
-        PieceChoice choice2 = new PieceChoice(3);
-        PieceChoice choice3 = new PieceChoice(1);
-        PieceChoice[] choices = new PieceChoice[4];
 
-        choices[0] = choice3;
-        choices[1] = choice;
-        choices[2] = choice2;
-        choices[3] = choice1;
 
-        ludoGameView = new LudoGameView(this,size.x,size.y,choices);
+//        PieceChoice choice = new PieceChoice(2);
+//        PieceChoice choice1 = new PieceChoice(4);
+//        PieceChoice choice2 = new PieceChoice(3);
+//        PieceChoice choice3 = new PieceChoice(1);
+//
+//        PieceChoice[] choices = new PieceChoice[];
+//
+//        choices[0] = choice3;
+//        choices[1] = choice;
+//        choices[2] = choice2;
+//        choices[3] = choice1;
+
+        PieceChoice[] player = PLayers();
+        Log.d("players" , "no of players" + player.length );
+        ludoGameView = new LudoGameView(this,size.x,size.y,player);
         setContentView(ludoGameView);
     }
+
+    public PieceChoice[] PLayers(){
+        if(getIntent().getStringExtra("player").equals("2")){
+            PieceChoice[] choices = new PieceChoice[2];
+            PieceChoice choice2 = new PieceChoice(3);
+            PieceChoice choice3 = new PieceChoice(1);
+            choices[0] = choice2;
+            choices[1] = choice3;
+            return choices;
+
+        } else {
+            PieceChoice[] choices = new PieceChoice[4];
+            PieceChoice choice = new PieceChoice(2);
+            PieceChoice choice1 = new PieceChoice(4);
+            PieceChoice choice2 = new PieceChoice(3);
+            PieceChoice choice3 = new PieceChoice(1);
+
+            choices[0] = choice3;
+            choices[1] = choice;
+            choices[2] = choice2;
+            choices[3] = choice1;
+
+            return choices;
+        }
+
+    }
+
+
 
     @Override
     protected void onResume() {
