@@ -69,14 +69,17 @@ public class LudoActivity extends AppCompatActivity {
     public PieceChoice[] PLayers(){
         if(getIntent().getStringExtra("player").equals("2")){
             PieceChoice[] choices = new PieceChoice[2];
+
+            PieceChoice choice1 = new PieceChoice(1);
             PieceChoice choice2 = new PieceChoice(3);
-            PieceChoice choice3 = new PieceChoice(1);
-            choices[0] = choice2;
-            choices[1] = choice3;
+
+            choices[0] = choice1;
+            choices[1] = choice2;
             return choices;
 
         } else {
             PieceChoice[] choices = new PieceChoice[4];
+
             PieceChoice choice = new PieceChoice(2);
             PieceChoice choice1 = new PieceChoice(4);
             PieceChoice choice2 = new PieceChoice(3);
@@ -184,6 +187,7 @@ public class LudoActivity extends AppCompatActivity {
             rectYellow = new Rect(250, ScreenHeight - 200,700,ScreenHeight - 50);
 
             totalPlayers = choices.length;
+            Log.d("players", "total players:  "+ choices.length);
 
             for (int i = 0; i < choices.length; i++)
             {

@@ -26,7 +26,7 @@ Button btnplay,p2,p4;
                 finish();
             }
         });
-        p2.setOnClickListener(new View.OnClickListener() {
+        p4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this,LudoActivity.class);
