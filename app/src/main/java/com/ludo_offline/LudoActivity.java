@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.ludo_offline.Characters.Ludo.Piece.Piece;
 import com.ludo_offline.Characters.Ludo.Player.Player;
@@ -120,7 +121,7 @@ public class LudoActivity extends AppCompatActivity {
 
         Turn t;
 
-        private int suffleDice = 30;
+        private int suffleDice = 10;
         private int nextDrawTime = 0,totalPlayers = 0;
         private boolean isShuffling = false, isMoving = false, toSuffle = false, toMove = false, isFactSet = false, toHome = false;
 
@@ -537,8 +538,9 @@ public class LudoActivity extends AppCompatActivity {
                                 pathY + siglePathWidth - 2, paint);
                     }
 
-                    if (i == 2 && j == 1)
-                        map.drawBitmap(scaledBmp, pathX, pathY-2, null);
+                    if (i == 2 && j == 2)
+                        map.drawBitmap(scaledBmp, pathX, pathY-4, null);
+                        Log.d("check" ,   ""+i+"  , "+j);
 
                     switch (i) {
                         case 0:
@@ -553,7 +555,7 @@ public class LudoActivity extends AppCompatActivity {
                                 romPath[51] = new PathPostion(pathX, pathY, false);
                             break;
                         case 2:
-                            if (j == 1)
+                            if (j == 2)
                                 romPath[50 - j] = new PathPostion(pathX, pathY, true);
                             else
                                 romPath[50 - j] = new PathPostion(pathX, pathY, false);
@@ -594,13 +596,13 @@ public class LudoActivity extends AppCompatActivity {
                                 pathY + siglePathWidth, paint);
                     }
 
-                    if (i == 0 && j == 1) {
+                    if (i == 0 && j == 2) {
                         map.drawBitmap(scaledBmp, pathX, pathY, null);
                     }
 
                     switch (i) {
                         case 0:
-                            if (j == 1)
+                            if (j == 2)
                                 romPath[11 - j] = new PathPostion(pathX, pathY, true);
                             else
                                 romPath[11 - j] = new PathPostion(pathX, pathY, false);
@@ -650,12 +652,12 @@ public class LudoActivity extends AppCompatActivity {
                                 pathY + siglePathWidth - 2, paint);
                     }
 
-                    if (i == 0 && j == 1)
+                    if (i == 0 && j == 2)
                         map.drawBitmap(scaledBmp, pathX, pathY, null);
 
                     switch (i) {
                         case 0:
-                            if (j == 1)
+                            if (j == 2)
                                 romPath[24 - j] = new PathPostion(pathX, pathY, true);
                             else
                                 romPath[24 - j] = new PathPostion(pathX, pathY, false);
@@ -707,7 +709,7 @@ public class LudoActivity extends AppCompatActivity {
                                 pathY + siglePathWidth - 2, paint);
                     }
 
-                    if (i == 2 && j == 4)
+                    if (i == 2 && j == 3)
                         map.drawBitmap(scaledBmp, pathX, pathY, null);
 
                     switch (i) {
@@ -722,7 +724,7 @@ public class LudoActivity extends AppCompatActivity {
                                 romPath[38] = new PathPostion(pathX, pathY, false);
                             break;
                         case 2:
-                            if (j == 4)
+                            if (j == 3)
                                 romPath[32 + j] = new PathPostion(pathX, pathY, true);
                             else
                                 romPath[32 + j] = new PathPostion(pathX, pathY, false);
@@ -1489,7 +1491,7 @@ public class LudoActivity extends AppCompatActivity {
             Random r = new Random();
             int next = r.nextInt(6) + 1;
             if(suffleDice <= 0) {
-                suffleDice = 100;
+                suffleDice = 10;
                 isShuffling = false;
                 toSuffle = false;
                 placeToMove = getNextNo(next);
